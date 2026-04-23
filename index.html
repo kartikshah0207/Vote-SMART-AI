@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteSmart AI - MP Elections</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated Background Orbs -->
+    <div class="bg-orbs-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Part 1: Onboarding Screen -->
+    <main id="onboarding-screen" class="screen active">
+        <div class="glass-card">
+            <header class="card-header">
+                <div class="app-logo-progress large">
+                    <div class="logo-icon-container">
+                        <svg viewBox="0 0 100 100" class="logo-svg-progress">
+                            <!-- Document Shapes -->
+                            <rect x="20" y="45" width="45" height="40" rx="4" fill="rgba(0, 210, 255, 0.1)" stroke="var(--color-teal-dark)" stroke-width="2"/>
+                            <rect x="25" y="50" width="35" height="30" rx="2" fill="rgba(0, 210, 255, 0.05)" stroke="var(--color-teal-dark)" stroke-width="1" stroke-dasharray="2 2"/>
+                            
+                            <!-- Upward Arrow -->
+                            <path class="arrow-line" d="M30 80 L55 55 L70 70 L90 30" stroke="var(--color-teal-neon)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <!-- Gold Arrow Tip -->
+                            <path class="arrow-tip" d="M80 30 H90 V40" stroke="#FFD700" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text-progress">
+                        <span class="vote-part">Vote</span><span class="smart-ai-part">SMART AI</span>
+                    </div>
+                </div>
+                <p class="tagline">Your Personal Guide to MP Elections</p>
+            </header>
+
+            <form id="onboarding-form" class="onboarding-form">
+                <div class="input-group">
+                    <label for="userName">Full Name</label>
+                    <input type="text" id="userName" placeholder="Enter your name" required autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="userAge">Age</label>
+                    <input type="number" id="userAge" placeholder="18 or above" min="18" max="120" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="userConstituency">Constituency</label>
+                    <div class="select-wrapper">
+                        <select id="userConstituency" required>
+                            <option value="" disabled selected>Select your constituency...</option>
+                            <option value="bhopal">Bhopal</option>
+                            <option value="indore">Indore</option>
+                            <option value="jabalpur">Jabalpur</option>
+                            <option value="gwalior">Gwalior</option>
+                            <option value="ujjain">Ujjain</option>
+                            <option value="sagar">Sagar</option>
+                            <option value="rewa">Rewa</option>
+                            <option value="satna">Satna</option>
+                            <option value="khargone">Khargone</option>
+                        </select>
+                        <div class="select-icon">
+                            <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L7 7L13 1" stroke="#00d2ff" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-neon-teal">
+                    <span>Unlock My Power</span>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Part 2: Dashboard Screen -->
+    <main id="dashboard-screen" class="screen hidden wide-screen">
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <div class="dashboard-layout glass-card">
+
+            <!-- Sidebar -->
+            <aside class="dashboard-sidebar" id="dashboard-sidebar">
+
+                <!-- Desktop Collapse Toggle -->
+                <button id="sidebar-toggle" class="sidebar-toggle" title="Collapse sidebar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+
+                <!-- Sidebar Logo -->
+                <div class="app-logo-progress small">
+                    <div class="logo-icon-container">
+                        <svg viewBox="0 0 100 100" class="logo-svg-progress">
+                            <rect x="20" y="45" width="45" height="40" rx="4" fill="rgba(0, 210, 255, 0.1)" stroke="var(--color-teal-dark)" stroke-width="2"/>
+                            <path class="arrow-line" d="M30 80 L55 55 L70 70 L90 30" stroke="var(--color-teal-neon)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <path class="arrow-tip" d="M80 30 H90 V40" stroke="#FFD700" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text-progress">
+                        <span class="vote-part">Vote</span><span class="smart-ai-part">SMART AI</span>
+                    </div>
+                </div>
+
+                <h2 class="sidebar-title">My Voter Blueprint</h2>
+
+                <div class="voter-details">
+                    <p class="voter-row"><span class="voter-label">Citizen</span><strong id="display-name"></strong></p>
+                    <p class="voter-row"><span class="voter-label">Age</span><strong id="display-age"></strong></p>
+                    <p class="voter-row"><span class="voter-label">Constituency</span><strong
+                            id="display-constituency"></strong></p>
+                    <p class="voter-row eligibility-row"><span class="voter-label">Eligibility</span><span
+                            id="display-eligibility" class="badge-eligible">✓ Eligible</span></p>
+                </div>
+                <button id="reset-onboarding" class="btn-reset" style="margin: 10px 0; font-size: 0.75rem; opacity: 0.7; background: none; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; padding: 4px 8px;">Reset Session</button>
+
+                <div class="step-progress-container">
+                    <ul class="step-progress">
+                        <li class="step active" data-step="1">
+                            <span class="step-dot" id="step-dot-1"></span>
+                            <span class="step-text">👤 Eligibility</span>
+                        </li>
+                        <li class="step" data-step="2">
+                            <span class="step-dot" id="step-dot-2"></span>
+                            <span class="step-text">📝 Form 6</span>
+                        </li>
+                        <li class="step" data-step="3">
+                            <span class="step-dot" id="step-dot-3"></span>
+                            <span class="step-text">🔍 Verification</span>
+                        </li>
+                        <li class="step" data-step="4">
+                            <span class="step-dot" id="step-dot-4"></span>
+                            <span class="step-text">🆔 e-EPIC</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="vote-impact-widget">
+                    <div class="impact-header">
+                        <h4>Your Power Index</h4>
+                        <button class="share-btn" title="Share your impact">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="18" cy="5" r="3"></circle>
+                                <circle cx="6" cy="12" r="3"></circle>
+                                <circle cx="18" cy="19" r="3"></circle>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="impact-content">
+                        <div class="progress-ring-container">
+                            <svg class="progress-ring" width="60" height="60">
+                                <circle class="progress-ring-bg" stroke="rgba(0,0,0,0.05)" stroke-width="4"
+                                    fill="transparent" r="26" cx="30" cy="30" />
+                                <circle class="progress-ring-fill" id="power-ring-fill" stroke="var(--color-teal-neon)"
+                                    stroke-width="4" fill="transparent" r="26" cx="30" cy="30" />
+                            </svg>
+                            <span class="impact-score" id="power-score">60%</span>
+                        </div>
+                        <p class="impact-text">
+                            <strong><span id="impact-constituency">Khargone</span>:</strong> Last election was decided
+                            by only 1,200 votes. Your 1 vote represents <strong>0.08%</strong> of the winning margin!
+                        </p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Hub -->
+            <section class="chat-hub">
+                <header class="chat-header">
+                    <!-- Mobile Hamburger -->
+                    <button id="mobile-menu-btn" class="mobile-menu-btn" title="Open menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+
+                    <div class="live-indicator">
+                        <span class="pulse-dot red"></span>
+                        <span class="live-text">LIVE</span>
+                    </div>
+                    <h3>Madhya Pradesh Elections</h3>
+                </header>
+
+                <div class="chat-area" id="chat-area">
+                    <div class="typing-indicator hidden" id="typing-indicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="quick-actions" id="quick-actions">
+                    <button class="action-tile" data-action="register">📋 Register</button>
+                    <button class="action-tile" data-action="compare">⚖️ Compare</button>
+                    <button class="action-tile" data-action="timeline">📅 Timeline</button>
+                    <button class="action-tile" data-action="why-vote">🗳️ Why Vote?</button>
+                    <button class="action-tile" data-action="candidate-a">🔵 Candidate A</button>
+                    <button class="action-tile" data-action="candidate-b">🔴 Candidate B</button>
+                </div>
+
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" placeholder="Ask about voting, candidates, or processes..."
+                        autocomplete="off">
+                    <button class="send-btn" id="send-btn" title="Send">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
